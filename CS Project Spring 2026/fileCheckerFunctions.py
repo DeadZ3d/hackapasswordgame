@@ -6,18 +6,6 @@
 
 import re
 
-def main():
-    password = "?loloreo77" # for example
-
-    # get a list of passwords in the leaked password files that are in the password from the user
-    leakedPasswordList = []
-    commonPasswords = existingPasswordChecker(password, leakedPasswordList)
-
-    # get a list of the english words in the password
-    englishWordsList = []
-    englishWords = englishWordsChecker(password, englishWordsList)
-
-
 
 # check if a leaked password from the leaked passwor file is in the password
 def existingPasswordChecker(password, matchedList):
@@ -60,5 +48,12 @@ def englishWordsChecker(password, matchedList):
     
     return matchedList
 
-if __name__ == "__main__":
-    main()
+
+
+# get a list of passwords in the leaked password files that are in the password from the user
+leakedPasswordList = []
+commonPasswords = existingPasswordChecker(password, leakedPasswordList)
+
+# get a list of the english words in the password
+englishWordsList = []
+englishWords = englishWordsChecker(password, englishWordsList)
