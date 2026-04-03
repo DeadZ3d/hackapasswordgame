@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Summary</title>
+    <style>
+    body {
+      padding: 20px;
+      background-color: black;
+      color: white;
+    }
+    h2 {
+      text-align: center;
+      color: #15b812;
+    }
+    #placement {
+      text-align: center;
+      font-size: 20px;
+      margin: 15px 0;
+    }
+    table {
+      width: 50%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: #15b812;
+      color: black;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #12a10f;
+      color: white;
+    }
+    .continue-button {
+            position: fixed;
+            bottom: 20px; right: 20px;
+            z-index: 100;
+        }
+  </style>
+</head>
+<body>
+
+  <h2>Performance Summary</h2>
+
+  <p id="placement">You Placed 0 out of 0</p>
+
+  <table>
+    <tr>
+      <th>Metric</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td>Total Characters</td>
+      <td id="length">0</td>
+    </tr>
+    <tr>
+      <td>Uppercase Letters</td>
+      <td id="uppercase">0</td>
+    </tr>
+    <tr>
+      <td>Lowercase Letters</td>
+      <td id="lowercase">0</td>
+    </tr>
+    <tr>
+      <td>Symbols</td>
+      <td id="symbols">0</td>
+    </tr>
+    <tr>
+      <td>Strength</td>
+      <td id="strength">Weak</td>
+    </tr>
+  </table>
+    
+  <!-- Continue Button -->
+    <button class="continue-button" style="background-color: black; color: #15b812; border: 1px solid #15b812; padding: 10px 20px; font-size: 16px;" onclick="window.location.href='leaderboard.html'">Continue</button>
+
+</body>
+</html>
