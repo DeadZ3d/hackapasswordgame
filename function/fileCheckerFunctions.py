@@ -1,61 +1,56 @@
-
 # Nwabueze-Umeh Izuchukwu's functions that checks files
-#|
-#|
-#|
-# where 'password' is the user_input
-
+import os
 import re
 
+ALPHANUMERIC_PATTERN = re.compile(r"^[a-zA-Z0-9]+$")
+PASSWORD_PARTS_PATTERN = re.compile(r"[A-Za-z]+|\d+")
 
-# check if a leaked password from the leaked passwor file is in the password
+
+def get_password_parts(password):
+    return PASSWORD_PARTS_PATTERN.findall(password)
+
+
 def existingPasswordChecker(password, matchedList):
-     # regex that matches only if the entire line is alphanumeric
-    pattern = re.compile(r'^[a-zA-Z0-9]+$')
-    
-    with open('rockyou.txt', 'r', encoding = "latin-1", errors = "ignore") as f:
-        for line in f:
-            cleanLine = line.strip()
-            if not cleanLine:  # skip empty lines
-                continue
-                
-            # check if line is purely alphanumeric
-            if pattern.match(cleanLine):
+    file_path = "data/rockyou.txt"
+    if not os.path.exists(file_path):
+        return matchedList
 
-                # check if the line is in the password
-                if cleanLine in password:
-                    matchedList.append(cleanLine)
-                    
+    password_parts = get_password_parts(password)
+
+    with open(file_path, "r", encoding="latin-1", errors="ignore") as file_handle:
+        for line in file_handle:
+            clean_line = line.strip()
+
+            if not clean_line:
+                continue
+
+            if not ALPHANUMERIC_PATTERN.match(clean_line):
+                continue
+
+            if clean_line in password_parts and clean_line not in matchedList:
+                matchedList.append(clean_line)
+
     return matchedList
 
 
-
-# check if an english word is in the password from the english words file 
 def englishWordsChecker(password, matchedList):
-    # regex that matches if the entire line is alphanumeric
-    pattern = re.compile(r"^[a-zA-Z0-9]+$")
-    
-    with open('english_words.txt', 'r', encoding = "latin-1", errors = "ignore") as f:
-        for line in f:
-            cleanLine = line.strip()
-            if not cleanLine:  # skip empty lines
+    file_path = "data/words.txt"
+    if not os.path.exists(file_path):
+        return matchedList
+
+    password_parts = get_password_parts(password.lower())
+
+    with open(file_path, "r", encoding="latin-1", errors="ignore") as file_handle:
+        for line in file_handle:
+            clean_line = line.strip()
+
+            if not clean_line:
                 continue
-                
-            # check if line is purely alphanumeric
-            if pattern.match(cleanLine):
-                # check if the line is in the password
-                if cleanLine.lower() in password.lower(): # ignore case because of the english words
-                    matchedList.append(cleanLine)
-    
+
+            if not ALPHANUMERIC_PATTERN.match(clean_line):
+                continue
+
+            if clean_line.lower() in password_parts and clean_line not in matchedList:
+                matchedList.append(clean_line)
+
     return matchedList
-
-
-
-# get a list of passwords in the leaked password files that are in the password from the user
-leakedPasswordList = []
-commonPasswords = existingPasswordChecker(password, leakedPasswordList)
-
-# get a list of the english words in the password
-englishWordsList = []
-englishWords = englishWordsChecker(password, englishWordsList)
->>>>>>> 797861901a404237e2b40dc8ddb287a7da695f75:CS Project Spring 2026/fileCheckerFunctions.py
