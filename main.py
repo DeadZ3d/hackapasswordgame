@@ -18,9 +18,10 @@ CRACK_TIMES_FILE = "data/crack_times.json"
 
 # Ensure the data folder exists
 os.makedirs("data", exist_ok=True)
-if not os.path.exists(CRACK_TIMES_FILE):
-    with open(CRACK_TIMES_FILE, "w") as f:
-        json.dump([], f)
+
+# Wipe the leaderboard on every startup for privacy
+with open(CRACK_TIMES_FILE, "w") as f:
+    json.dump([], f)
 
 
 def save_result_to_json(name, metrics, crack_time_seconds):
@@ -41,7 +42,7 @@ def save_result_to_json(name, metrics, crack_time_seconds):
 
 
 def calculate_strength_level(entropy_value):
-    """Simple mapping from entropy to Weak/Medium/Strong"""
+    """Maps entropy bits to a human-readable strength label."""
     if entropy_value < 40:
         return "Weak"
     elif entropy_value < 60:
@@ -69,11 +70,10 @@ def submit_password():
     if not username or not password:
         return jsonify({"error": "Username and password required"}), 400
 
-    # Input validation
     if inputValidation(password):
-        return jsonify({"error": "Invalid password"}), 400
+        return jsonify({"error": "Password must be 1–16 characters with no spaces."}), 400
 
-    # Password metrics
+    # Analyze password
     tokens = tokenize_string(password)
     password_size = get_password_size(password)
     digits, digit_positions = get_digits_info(password)
@@ -82,24 +82,44 @@ def submit_password():
     english_matches = englishWordsChecker(password, [])
 
     crack_times = entropy(password, leaked_matches, english_matches)
-    entropy_value = password_size * 4  # simple placeholder for frontend
 
-    # Save metrics
+    # Use 100-GPU crack time as the leaderboard score
+    crack_time_100 = crack_times.get(100, 0)
+
+    # Calculate real entropy for strength label
+    import math
+    from function.entropy_calculator import estimate_poolsize
+    pool = estimate_poolsize(password)
+    raw_entropy = password_size * math.log(pool, 2) if pool > 0 else 0
+    strength = calculate_strength_level(raw_entropy)
+
     metrics = {
         "length": password_size,
         "uppercase": sum(1 for c in password if c.isupper()),
         "lowercase": sum(1 for c in password if c.islower()),
+        "digits": len(digits),
         "symbols": len(symbols),
-        "strength": calculate_strength_level(entropy_value),
+        "strength": strength,
         "tokens": tokens,
         "leaked_matches": leaked_matches,
-        "english_matches": english_matches
+        "english_matches": english_matches,
+        "crack_time_seconds": crack_time_100,
     }
 
-    # Save to JSON for leaderboard
-    save_result_to_json(username, metrics, crack_times[100])
+    save_result_to_json(username, metrics, crack_time_100)
 
-    return jsonify({"metrics": metrics, "crack_time_seconds": crack_times[100]})
+    # Compute rank after saving
+    with open(CRACK_TIMES_FILE, "r") as f:
+        all_data = json.load(f)
+
+    sorted_data = sorted(all_data, key=lambda x: x["crack_time_seconds"], reverse=True)
+    rank = next((i + 1 for i, entry in enumerate(sorted_data) if entry["name"] == username), 1)
+    total = len(sorted_data)
+
+    metrics["rank"] = rank
+    metrics["totalPlayers"] = total
+
+    return jsonify({"metrics": metrics, "crack_time_seconds": crack_time_100})
 
 
 @app.route("/performance_summary")
@@ -109,7 +129,7 @@ def performance_summary():
 
 @app.route("/leaderboard_data")
 def leaderboard_data():
-    """Return sorted leaderboard based on crack_time_seconds descending"""
+    """Return top-5 leaderboard sorted by crack_time_seconds descending."""
     with open(CRACK_TIMES_FILE, "r") as f:
         try:
             data = json.load(f)
@@ -117,7 +137,7 @@ def leaderboard_data():
             data = []
 
     sorted_data = sorted(data, key=lambda x: x["crack_time_seconds"], reverse=True)
-    return jsonify(sorted_data)
+    return jsonify(sorted_data[:5])  # Top 5 only
 
 
 @app.route("/leaderboard")
