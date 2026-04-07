@@ -47,5 +47,30 @@
     </div>
 
     </form>
+
+    <script>
+    document.querySelector("form").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const username = document.getElementById("user").value;
+    const password = document.getElementById("password").value;
+
+    const response = await fetch("/submit_password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+        // Store metrics temporarily to display in performance summary
+        sessionStorage.setItem("metrics", JSON.stringify(result.metrics));
+        // Redirect to loading screen
+        window.location.href = "/loading";
+    } else {
+        alert(result.error);
+    }
+});
+</script>
 </body>
 </html>

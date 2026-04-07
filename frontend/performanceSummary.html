@@ -78,5 +78,19 @@
   <!-- Continue Button -->
     <button class="continue-button" style="background-color: black; color: #15b812; border: 1px solid #15b812; padding: 10px 20px; font-size: 16px;" onclick="window.location.href='leaderboard.html'">Continue</button>
 
+    <script>
+const metrics = JSON.parse(sessionStorage.getItem("metrics"));
+
+if (metrics) {
+    document.getElementById("length").textContent = metrics.length;
+    document.getElementById("uppercase").textContent = metrics.uppercase;
+    document.getElementById("lowercase").textContent = metrics.lowercase;
+    document.getElementById("symbols").textContent = metrics.symbols;
+    document.getElementById("strength").textContent = metrics.strength;
+
+    const totalPlayers = metrics.totalPlayers || 1;
+    document.getElementById("placement").textContent = `You Placed 1 out of ${totalPlayers}`;
+}
+</script>
 </body>
 </html>

@@ -54,5 +54,29 @@
     <div class="footer"> 
         <a style="background-color: black; color: #15b812; margin-left: 10px; text-decoration: none" href="index.html">Return to Sign In</a>
     </div>
+
+    <script>
+async function loadLeaderboard() {
+    const response = await fetch("/leaderboard_data");
+    const data = await response.json();
+
+    const tbody = document.querySelector("tbody");
+    tbody.innerHTML = "";
+
+    data.forEach((user, index) => {
+        const tr = document.createElement("tr");
+        tr.style.backgroundColor = "#333";
+        tr.style.color = "#15b812";
+        tr.innerHTML = `
+            <td style="border:1px solid #15b812; padding:10px;">${index+1}</td>
+            <td style="border:1px solid #15b812; padding:10px;">${user.name}</td>
+            <td style="border:1px solid #15b812; padding:10px;">${Math.round(user.crack_time_seconds)}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+loadLeaderboard();
+</script>
 </body>
 </html>
