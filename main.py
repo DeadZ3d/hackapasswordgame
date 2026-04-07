@@ -1,11 +1,9 @@
+from flask import Flask, render_template, request, jsonify
 import json
 import os
 
 from function.entropy_calculator import entropy
-from function.fileCheckerFunctions import (
-    englishWordsChecker,
-    existingPasswordChecker,
-)
+from function.fileCheckerFunctions import englishWordsChecker, existingPasswordChecker
 from function.functions import (
     get_digits_info,
     get_password_size,
@@ -14,98 +12,138 @@ from function.functions import (
     tokenize_string,
 )
 
+app = Flask(__name__, template_folder="frontend")
 
-def format_time(seconds):
-    total_seconds = int(seconds)
+CRACK_TIMES_FILE = "data/crack_times.json"
 
-    days = total_seconds // 86400
-    remaining_seconds = total_seconds % 86400
+# Ensure the data folder exists
+os.makedirs("data", exist_ok=True)
 
-    hours = remaining_seconds // 3600
-    remaining_seconds = remaining_seconds % 3600
-
-    minutes = remaining_seconds // 60
-    seconds = remaining_seconds % 60
-
-    return f"{days}:{hours:02}:{minutes:02}:{seconds:02}"
+# Wipe the leaderboard on every startup for privacy
+with open(CRACK_TIMES_FILE, "w") as f:
+    json.dump([], f)
 
 
-def get_time_to_crack(seconds):
-    if seconds >= 31536000:
-        return f"{seconds / 31536000:.2f} years"
-    elif seconds >= 86400:
-        return f"{seconds / 86400:.2f} days"
-    elif seconds >= 3600:
-        return f"{seconds / 3600:.2f} hours"
-    elif seconds >= 60:
-        return f"{seconds / 60:.2f} minutes"
-    else:
-        return f"{seconds:.2f} seconds"
+def save_result_to_json(name, metrics, crack_time_seconds):
+    with open(CRACK_TIMES_FILE, "r") as f:
+        try:
+            data = json.load(f)
+        except json.JSONDecodeError:
+            data = []
 
-
-def save_result_to_json(name, crack_time_seconds):
-    file_path = "data/crack_times.json"
-    new_record = {
+    data.append({
         "name": name,
+        "metrics": metrics,
         "crack_time_seconds": crack_time_seconds
-    }
+    })
 
-    if os.path.exists(file_path):
-        with open(file_path, "r", encoding="utf-8") as file_handle:
-            try:
-                data = json.load(file_handle)
-            except json.JSONDecodeError:
-                data = []
+    with open(CRACK_TIMES_FILE, "w") as f:
+        json.dump(data, f, indent=4)
+
+
+def calculate_strength_level(entropy_value):
+    """Maps entropy bits to a human-readable strength label."""
+    if entropy_value < 40:
+        return "Weak"
+    elif entropy_value < 60:
+        return "Medium"
     else:
-        data = []
-
-    data.append(new_record)
-
-    with open(file_path, "w", encoding="utf-8") as file_handle:
-        json.dump(data, file_handle, indent=4)
+        return "Strong"
 
 
-def main():
-    print("Disclaimer: No password or username is stored.")
-    user_name = input("Enter your name: ")
-    password = input("Enter a password: ")
+@app.route("/")
+def index():
+    return render_template("index.html")
 
-    # Keep asking until the password follows the rules in functions.py
-    while inputValidation(password):
-        password = input(
-            "Invalid password. It must be 1-16 characters with no spaces. Try another one: "
-        )
 
+@app.route("/loading")
+def loading():
+    return render_template("loadingScreen.html")
+
+
+@app.route("/submit_password", methods=["POST"])
+def submit_password():
+    data = request.get_json()
+    username = data.get("username")
+    password = data.get("password")
+
+    if not username or not password:
+        return jsonify({"error": "Username and password required"}), 400
+
+    if inputValidation(password):
+        return jsonify({"error": "Password must be 1–16 characters with no spaces."}), 400
+
+    # Analyze password
     tokens = tokenize_string(password)
     password_size = get_password_size(password)
     digits, digit_positions = get_digits_info(password)
     symbols, symbol_positions = get_symbols_info(password)
-
     leaked_matches = existingPasswordChecker(password, [])
     english_matches = englishWordsChecker(password, [])
+
     crack_times = entropy(password, leaked_matches, english_matches)
-    save_result_to_json(user_name, crack_times[100])
 
-    print()
-    print(f"Password length: {password_size}")
-    print(f"Tokens: {tokens}")
+    # Use 100-GPU crack time as the leaderboard score
+    crack_time_100 = crack_times.get(100, 0)
 
-    if english_matches:
-        print(f"English words found: {english_matches}")
-    else:
-        print("English words found: none")
+    # Calculate real entropy for strength label
+    import math
+    from function.entropy_calculator import estimate_poolsize
+    pool = estimate_poolsize(password)
+    raw_entropy = password_size * math.log(pool, 2) if pool > 0 else 0
+    strength = calculate_strength_level(raw_entropy)
 
-    if leaked_matches:
-        print(f"Leaked password fragments found: {leaked_matches}")
-    else:
-        print("Leaked password fragments found: none")
+    metrics = {
+        "length": password_size,
+        "uppercase": sum(1 for c in password if c.isupper()),
+        "lowercase": sum(1 for c in password if c.islower()),
+        "digits": len(digits),
+        "symbols": len(symbols),
+        "strength": strength,
+        "tokens": tokens,
+        "leaked_matches": leaked_matches,
+        "english_matches": english_matches,
+        "crack_time_seconds": crack_time_100,
+    }
 
-    print("\nEstimated crack time by attacker type:")
-    print(f"10 GPUs (run of the mill hacker): {get_time_to_crack(crack_times[10])}")
-    print(f"100 GPUs (dedicated attacker): {get_time_to_crack(crack_times[100])}")
-    print(f"1000 GPUs (criminal organization): {get_time_to_crack(crack_times[1000])}")
-    print(f"1000000 GPUs (nation state): {get_time_to_crack(crack_times[1000000])}")
+    save_result_to_json(username, metrics, crack_time_100)
+
+    # Compute rank after saving
+    with open(CRACK_TIMES_FILE, "r") as f:
+        all_data = json.load(f)
+
+    sorted_data = sorted(all_data, key=lambda x: x["crack_time_seconds"], reverse=True)
+    rank = next((i + 1 for i, entry in enumerate(sorted_data) if entry["name"] == username), 1)
+    total = len(sorted_data)
+
+    metrics["rank"] = rank
+    metrics["totalPlayers"] = total
+
+    return jsonify({"metrics": metrics, "crack_time_seconds": crack_time_100})
+
+
+@app.route("/performance_summary")
+def performance_summary():
+    return render_template("performanceSummary.html")
+
+
+@app.route("/leaderboard_data")
+def leaderboard_data():
+    """Return top-5 leaderboard sorted by crack_time_seconds descending."""
+    with open(CRACK_TIMES_FILE, "r") as f:
+        try:
+            data = json.load(f)
+        except json.JSONDecodeError:
+            data = []
+
+    sorted_data = sorted(data, key=lambda x: x["crack_time_seconds"], reverse=True)
+    return jsonify(sorted_data[:5])  # Top 5 only
+
+
+@app.route("/leaderboard")
+def leaderboard():
+    return render_template("leaderboard.html")
 
 
 if __name__ == "__main__":
-    main()
+    app.run(debug=True)

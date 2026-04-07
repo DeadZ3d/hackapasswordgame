@@ -3,36 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading</title>
-    <style> 
-        .continue-button {
+    <title>Analyzing...</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: black;
+            font-family: 'Share Tech Mono', monospace;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #matrix-gif {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Overlay text in the center */
+        #status-overlay {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
-            display: none; /* Hide initially */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #15b812;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            text-align: center;
+            text-shadow: 0 0 12px rgba(21, 184, 18, 0.8);
+            pointer-events: none;
+        }
+
+        #status-overlay .blink {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Continue button fixed bottom-right */
+        #continueBtn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background-color: black;
+            color: #15b812;
+            border: 1px solid #15b812;
+            padding: 12px 24px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 0 16px rgba(21, 184, 18, 0.4);
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        #continueBtn:hover {
+            background-color: #15b812;
+            color: black;
         }
     </style>
 </head>
-<body style="background-color: black;">
-    
-    <!-- Loading Animation -->
-    <img src="/images/matrix.gif" alt="Loading animation" 
-         style="width: 100%; height: 100vh; object-fit: cover;">
-    
-    <!-- Continue Button -->
-    <button id="continueBtn" class="continue-button"
-        style="background-color: black; color: #15b812; border: 1px solid #15b812; padding: 10px 20px; font-size: 16px;"
-        onclick="window.location.href='performanceSummary.html'">
-        Continue
+<body>
+    <img id="matrix-gif" src="/static/images/matrix.gif" alt="Analyzing...">
+
+    <div id="status-overlay">
+        <div>CRACKING PASSWORD<span class="blink">_</span></div>
+        <div id="timer-line" style="font-size: 0.9rem; margin-top: 12px; color: #0d7a0b;">Please wait...</div>
+    </div>
+
+    <button id="continueBtn" onclick="window.location.href='/performance_summary'">
+        Continue →
     </button>
 
     <script>
-        // Wait 5 minutes (300,000 milliseconds), then show the button
+        // Safety check: if no metrics in session (user navigated here directly), go home
+        if (!sessionStorage.getItem("metrics")) {
+            window.location.href = "/";
+        }
+
+        // Show the continue button after 5 seconds
+        // (Change to 300000 for a real 5-minute wait if desired)
+        const WAIT_MS = 30000;
+        const start = Date.now();
+
+        const timerLine = document.getElementById("timer-line");
+
+        const interval = setInterval(() => {
+            const elapsed = Date.now() - start;
+            const remaining = Math.max(0, Math.ceil((WAIT_MS - elapsed) / 1000));
+            if (remaining > 0) {
+                timerLine.textContent = `Estimated time remaining: ${remaining}s`;
+            } else {
+                timerLine.textContent = "Analysis complete.";
+                clearInterval(interval);
+            }
+        }, 500);
+
         setTimeout(() => {
             document.getElementById("continueBtn").style.display = "block";
-        }, 300000);
+        }, WAIT_MS);
     </script>
-
 </body>
 </html>

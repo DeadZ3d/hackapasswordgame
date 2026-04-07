@@ -1,0 +1,62 @@
+[
+    {
+        "name": "greg",
+        "metrics": {
+            "length": 11,
+            "uppercase": 0,
+            "lowercase": 10,
+            "digits": 0,
+            "symbols": 1,
+            "strength": "Strong",
+            "tokens": [
+                "h",
+                "e",
+                "l",
+                "l",
+                "o",
+                "w",
+                "o",
+                "r",
+                "l",
+                "d",
+                "!"
+            ],
+            "leaked_matches": [
+                "helloworld"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 3812.6593017830805
+        },
+        "crack_time_seconds": 3812.6593017830805
+    },
+    {
+        "name": "greg",
+        "metrics": {
+            "length": 11,
+            "uppercase": 0,
+            "lowercase": 10,
+            "digits": 0,
+            "symbols": 1,
+            "strength": "Strong",
+            "tokens": [
+                "h",
+                "e",
+                "l",
+                "l",
+                "o",
+                "w",
+                "o",
+                "r",
+                "l",
+                "d",
+                "!"
+            ],
+            "leaked_matches": [
+                "helloworld"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 3812.6593017830805
+        },
+        "crack_time_seconds": 3812.6593017830805
+    }
+]

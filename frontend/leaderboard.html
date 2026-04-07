@@ -5,54 +5,167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+        * { box-sizing: border-box; }
+
         body {
-            display: flex; 
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            background-color: black;
+            font-family: 'Share Tech Mono', monospace;
+            color: #15b812;
             min-height: 100vh;
-            margin: 0; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
         }
 
-        .content {
-            width: 80%;
-            margin-top: 20px;
+        h1 {
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-shadow: 0 0 12px rgba(21, 184, 18, 0.6);
         }
 
-        .footer {
-            margin-top: 20px;
+        table {
+            width: 100%;
+            max-width: 600px;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        thead tr {
+            background-color: #0d4d0c;
+        }
+
+        th {
+            padding: 12px 16px;
+            text-align: left;
+            border: 1px solid #15b812;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        td {
+            padding: 10px 16px;
+            border: 1px solid #1a5c19;
+            font-size: 0.9rem;
+        }
+
+        tr:nth-child(even) td { background-color: #050d05; }
+        tr:nth-child(odd)  td { background-color: #020902; }
+
+        /* Gold/silver/bronze for top 3 */
+        .rank-1 { color: #ffd700; }
+        .rank-2 { color: #c0c0c0; }
+        .rank-3 { color: #cd7f32; }
+
+        #empty-msg {
+            color: #555;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            display: none;
+        }
+
+        .footer-link {
+            color: #15b812;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border: 1px solid #15b812;
+            padding: 10px 20px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .footer-link:hover {
+            background-color: #15b812;
+            color: black;
         }
     </style>
 </head>
-<body style="background-color: black;">
-    <h1 style="color: #15b812; text-align: center;">Leaderboard</h1>
-    <!-- Placeholder for leaderboard content -->
-     <div class = "content">
-        <table style="width: 100%; border-collapse: collapse;">
-            <thead>
-                <tr style="background-color: #15b812; color: black;">
-                    <th style="border: 1px solid #15b812; padding: 10px;">Rank</th>
-                    <th style="border: 1px solid #15b812; padding: 10px;">Username</th>
-                    <th style="border: 1px solid #15b812; padding: 10px;">Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr style="background-color: #333; color: #15b812;">
-                    <td style="border: 1px solid #15b812; padding: 10px;">1</td>
-                    <td style="border: 1px solid #15b812; padding: 10px;">User1</td>
-                    <td style="border: 1px solid #15b812; padding: 10px;">60</td>
-                </tr>
-                <tr style="background-color: #333; color: #15b812;">
-                    <td style="border: 1px solid #15b812; padding: 10px;">2</td>
-                    <td style="border: 1px solid #15b812; padding: 10px;">User2</td>
-                    <td style="border: 1px solid #15b812; padding: 10px;">45</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<body>
+    <h1>[ Leaderboard ]</h1>
 
-    <div class="footer"> 
-        <a style="background-color: black; color: #15b812; margin-left: 10px; text-decoration: none" href="index.html">Return to Sign In</a>
-    </div>
+    <p id="empty-msg">No entries yet. Be the first to play!</p>
+
+    <table id="leaderboard-table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Crack Time (s)</th>
+                <th>Strength</th>
+            </tr>
+        </thead>
+        <tbody id="leaderboard-body">
+            <!-- Populated by JS -->
+        </tbody>
+    </table>
+
+    <a class="footer-link" href="/">← Play Again</a>
+
+    <script>
+        async function loadLeaderboard() {
+            try {
+                const response = await fetch("/leaderboard_data");
+                const data = await response.json();
+
+                const tbody = document.getElementById("leaderboard-body");
+                const emptyMsg = document.getElementById("empty-msg");
+                tbody.innerHTML = "";
+
+                if (!data || data.length === 0) {
+                    emptyMsg.style.display = "block";
+                    document.getElementById("leaderboard-table").style.display = "none";
+                    return;
+                }
+
+                const rankClasses = ["rank-1", "rank-2", "rank-3"];
+
+                data.forEach((user, index) => {
+                    const rank = index + 1;
+                    const rankClass = rankClasses[index] || "";
+                    const crackTime = user.crack_time_seconds;
+
+                    // Format crack time nicely
+                    let timeDisplay;
+                    if (crackTime < 1) {
+                        timeDisplay = "< 1s";
+                    } else if (crackTime < 60) {
+                        timeDisplay = `${Math.round(crackTime)}s`;
+                    } else if (crackTime < 3600) {
+                        timeDisplay = `${Math.round(crackTime / 60)}m`;
+                    } else if (crackTime < 86400) {
+                        timeDisplay = `${Math.round(crackTime / 3600)}h`;
+                    } else {
+                        timeDisplay = `${Math.round(crackTime / 86400)}d`;
+                    }
+
+                    const strength = user.metrics?.strength ?? "—";
+
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td class="${rankClass}">${rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : rank}</td>
+                        <td>${escapeHtml(user.name)}</td>
+                        <td>${timeDisplay}</td>
+                        <td>${strength}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (err) {
+                console.error("Failed to load leaderboard:", err);
+            }
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement("div");
+            div.appendChild(document.createTextNode(str));
+            return div.innerHTML;
+        }
+
+        loadLeaderboard();
+    </script>
 </body>
 </html>
