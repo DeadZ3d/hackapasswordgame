@@ -1,62 +1,889 @@
 [
     {
-        "name": "greg",
+        "name": "zach",
         "metrics": {
             "length": 11,
-            "uppercase": 0,
-            "lowercase": 10,
+            "uppercase": 2,
+            "lowercase": 8,
             "digits": 0,
             "symbols": 1,
             "strength": "Strong",
             "tokens": [
-                "h",
+                "H",
                 "e",
                 "l",
                 "l",
                 "o",
-                "w",
+                "W",
                 "o",
                 "r",
                 "l",
                 "d",
                 "!"
             ],
-            "leaked_matches": [
-                "helloworld"
-            ],
+            "leaked_matches": [],
             "english_matches": [],
-            "crack_time_seconds": 3812.6593017830805
+            "crack_time_seconds": 7345851608.171171
         },
-        "crack_time_seconds": 3812.6593017830805
+        "crack_time_seconds": 7345851608.171171
     },
     {
-        "name": "greg",
+        "name": "HotdogWater478",
         "metrics": {
-            "length": 11,
+            "length": 12,
+            "uppercase": 1,
+            "lowercase": 5,
+            "digits": 4,
+            "symbols": 2,
+            "strength": "Strong",
+            "tokens": [
+                "K",
+                "3",
+                "s",
+                "t",
+                "r",
+                "e",
+                "l",
+                "!",
+                "@",
+                "5",
+                "8",
+                "9"
+            ],
+            "leaked_matches": [
+                "3"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 72619676.94309336
+        },
+        "crack_time_seconds": 72619676.94309336
+    },
+    {
+        "name": "shimj",
+        "metrics": {
+            "length": 13,
             "uppercase": 0,
-            "lowercase": 10,
-            "digits": 0,
+            "lowercase": 4,
+            "digits": 8,
             "symbols": 1,
             "strength": "Strong",
             "tokens": [
-                "h",
-                "e",
-                "l",
-                "l",
-                "o",
-                "w",
-                "o",
-                "r",
-                "l",
-                "d",
+                "2",
+                "5",
+                "1",
+                "4",
+                "3",
+                "c",
+                "c",
+                "k",
+                "i",
+                "3",
+                "8",
+                "0",
                 "!"
             ],
             "leaked_matches": [
-                "helloworld"
+                "25143"
             ],
             "english_matches": [],
-            "crack_time_seconds": 3812.6593017830805
+            "crack_time_seconds": 101422879.05695777
         },
-        "crack_time_seconds": 3812.6593017830805
+        "crack_time_seconds": 101422879.05695777
+    },
+    {
+        "name": "emily.easton",
+        "metrics": {
+            "length": 8,
+            "uppercase": 2,
+            "lowercase": 2,
+            "digits": 4,
+            "symbols": 0,
+            "strength": "Medium",
+            "tokens": [
+                "6",
+                "6",
+                "f",
+                "L",
+                "I",
+                "p",
+                "6",
+                "6"
+            ],
+            "leaked_matches": [],
+            "english_matches": [],
+            "crack_time_seconds": 1091.7005279244836
+        },
+        "crack_time_seconds": 1091.7005279244836
+    },
+    {
+        "name": "emily.easton",
+        "metrics": {
+            "length": 8,
+            "uppercase": 2,
+            "lowercase": 2,
+            "digits": 4,
+            "symbols": 0,
+            "strength": "Medium",
+            "tokens": [
+                "6",
+                "6",
+                "f",
+                "L",
+                "I",
+                "p",
+                "6",
+                "6"
+            ],
+            "leaked_matches": [],
+            "english_matches": [],
+            "crack_time_seconds": 1091.7005279244836
+        },
+        "crack_time_seconds": 1091.7005279244836
+    },
+    {
+        "name": "emily.easton",
+        "metrics": {
+            "length": 8,
+            "uppercase": 2,
+            "lowercase": 2,
+            "digits": 4,
+            "symbols": 0,
+            "strength": "Medium",
+            "tokens": [
+                "6",
+                "6",
+                "f",
+                "L",
+                "I",
+                "p",
+                "6",
+                "6"
+            ],
+            "leaked_matches": [],
+            "english_matches": [],
+            "crack_time_seconds": 1091.7005279244836
+        },
+        "crack_time_seconds": 1091.7005279244836
+    },
+    {
+        "name": "emily.easton",
+        "metrics": {
+            "length": 8,
+            "uppercase": 2,
+            "lowercase": 2,
+            "digits": 4,
+            "symbols": 0,
+            "strength": "Medium",
+            "tokens": [
+                "6",
+                "6",
+                "f",
+                "L",
+                "I",
+                "p",
+                "6",
+                "6"
+            ],
+            "leaked_matches": [],
+            "english_matches": [],
+            "crack_time_seconds": 1091.7005279244836
+        },
+        "crack_time_seconds": 1091.7005279244836
+    },
+    {
+        "name": "emily.easton",
+        "metrics": {
+            "length": 8,
+            "uppercase": 2,
+            "lowercase": 2,
+            "digits": 4,
+            "symbols": 0,
+            "strength": "Medium",
+            "tokens": [
+                "6",
+                "6",
+                "f",
+                "L",
+                "I",
+                "p",
+                "6",
+                "6"
+            ],
+            "leaked_matches": [],
+            "english_matches": [],
+            "crack_time_seconds": 1091.7005279244836
+        },
+        "crack_time_seconds": 1091.7005279244836
+    },
+    {
+        "name": "amroodt",
+        "metrics": {
+            "length": 11,
+            "uppercase": 1,
+            "lowercase": 1,
+            "digits": 7,
+            "symbols": 2,
+            "strength": "Strong",
+            "tokens": [
+                ")",
+                "o",
+                "9",
+                "9",
+                "9",
+                "6",
+                "1",
+                "2",
+                "7",
+                "J",
+                ")"
+            ],
+            "leaked_matches": [
+                "o"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 772549.7547137523
+        },
+        "crack_time_seconds": 772549.7547137523
+    },
+    {
+        "name": "amroodt",
+        "metrics": {
+            "length": 11,
+            "uppercase": 1,
+            "lowercase": 1,
+            "digits": 7,
+            "symbols": 2,
+            "strength": "Strong",
+            "tokens": [
+                ")",
+                "o",
+                "9",
+                "9",
+                "9",
+                "6",
+                "1",
+                "2",
+                "7",
+                "J",
+                ")"
+            ],
+            "leaked_matches": [
+                "o"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 772549.7547137523
+        },
+        "crack_time_seconds": 772549.7547137523
+    },
+    {
+        "name": "arer",
+        "metrics": {
+            "length": 15,
+            "uppercase": 1,
+            "lowercase": 11,
+            "digits": 2,
+            "symbols": 1,
+            "strength": "Strong",
+            "tokens": [
+                "B",
+                "i",
+                "s",
+                "h",
+                "o",
+                "p",
+                "h",
+                "u",
+                "s",
+                "k",
+                "i",
+                "e",
+                "2",
+                "8",
+                "$"
+            ],
+            "leaked_matches": [
+                "28"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 60316741754102.06
+        },
+        "crack_time_seconds": 60316741754102.06
+    },
+    {
+        "name": "dmartin",
+        "metrics": {
+            "length": 8,
+            "uppercase": 0,
+            "lowercase": 4,
+            "digits": 3,
+            "symbols": 1,
+            "strength": "Medium",
+            "tokens": [
+                "t",
+                "e",
+                "c",
+                "h",
+                "1",
+                "2",
+                "3",
+                "."
+            ],
+            "leaked_matches": [
+                "123",
+                "tech"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 0.06975757441000022
+        },
+        "crack_time_seconds": 0.06975757441000022
+    },
+    {
+        "name": "dmartin",
+        "metrics": {
+            "length": 8,
+            "uppercase": 0,
+            "lowercase": 4,
+            "digits": 3,
+            "symbols": 1,
+            "strength": "Medium",
+            "tokens": [
+                "t",
+                "e",
+                "c",
+                "h",
+                "1",
+                "2",
+                "3",
+                "."
+            ],
+            "leaked_matches": [
+                "123",
+                "tech"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 0.06975757441000022
+        },
+        "crack_time_seconds": 0.06975757441000022
+    },
+    {
+        "name": "dmartin",
+        "metrics": {
+            "length": 8,
+            "uppercase": 0,
+            "lowercase": 4,
+            "digits": 3,
+            "symbols": 1,
+            "strength": "Medium",
+            "tokens": [
+                "t",
+                "e",
+                "c",
+                "h",
+                "1",
+                "2",
+                "3",
+                "."
+            ],
+            "leaked_matches": [
+                "123",
+                "tech"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 0.06975757441000022
+        },
+        "crack_time_seconds": 0.06975757441000022
+    },
+    {
+        "name": "RavenSystem",
+        "metrics": {
+            "length": 10,
+            "uppercase": 1,
+            "lowercase": 3,
+            "digits": 3,
+            "symbols": 3,
+            "strength": "Strong",
+            "tokens": [
+                "$",
+                "p",
+                "@",
+                "r",
+                "t",
+                "@",
+                "N",
+                "1",
+                "1",
+                "7"
+            ],
+            "leaked_matches": [
+                "p",
+                "117"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 8218.614411848439
+        },
+        "crack_time_seconds": 8218.614411848439
+    },
+    {
+        "name": "RavenSystem",
+        "metrics": {
+            "length": 10,
+            "uppercase": 1,
+            "lowercase": 3,
+            "digits": 3,
+            "symbols": 3,
+            "strength": "Strong",
+            "tokens": [
+                "$",
+                "p",
+                "@",
+                "r",
+                "t",
+                "@",
+                "N",
+                "1",
+                "1",
+                "7"
+            ],
+            "leaked_matches": [
+                "p",
+                "117"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 8218.614411848439
+        },
+        "crack_time_seconds": 8218.614411848439
+    },
+    {
+        "name": "RavenSystem",
+        "metrics": {
+            "length": 10,
+            "uppercase": 1,
+            "lowercase": 3,
+            "digits": 3,
+            "symbols": 3,
+            "strength": "Strong",
+            "tokens": [
+                "$",
+                "p",
+                "@",
+                "r",
+                "t",
+                "@",
+                "N",
+                "1",
+                "1",
+                "7"
+            ],
+            "leaked_matches": [
+                "p",
+                "117"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 8218.614411848439
+        },
+        "crack_time_seconds": 8218.614411848439
+    },
+    {
+        "name": "RavenSystem",
+        "metrics": {
+            "length": 10,
+            "uppercase": 1,
+            "lowercase": 3,
+            "digits": 3,
+            "symbols": 3,
+            "strength": "Strong",
+            "tokens": [
+                "$",
+                "p",
+                "@",
+                "r",
+                "t",
+                "@",
+                "N",
+                "1",
+                "1",
+                "7"
+            ],
+            "leaked_matches": [
+                "p",
+                "117"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 8218.614411848439
+        },
+        "crack_time_seconds": 8218.614411848439
+    },
+    {
+        "name": "RavenSystem",
+        "metrics": {
+            "length": 10,
+            "uppercase": 1,
+            "lowercase": 3,
+            "digits": 3,
+            "symbols": 3,
+            "strength": "Strong",
+            "tokens": [
+                "$",
+                "p",
+                "@",
+                "r",
+                "t",
+                "@",
+                "N",
+                "1",
+                "1",
+                "7"
+            ],
+            "leaked_matches": [
+                "p",
+                "117"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 8218.614411848439
+        },
+        "crack_time_seconds": 8218.614411848439
+    },
+    {
+        "name": "RavenSystem",
+        "metrics": {
+            "length": 10,
+            "uppercase": 1,
+            "lowercase": 3,
+            "digits": 3,
+            "symbols": 3,
+            "strength": "Strong",
+            "tokens": [
+                "$",
+                "p",
+                "@",
+                "r",
+                "t",
+                "@",
+                "N",
+                "1",
+                "1",
+                "7"
+            ],
+            "leaked_matches": [
+                "p",
+                "117"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 8218.614411848439
+        },
+        "crack_time_seconds": 8218.614411848439
+    },
+    {
+        "name": "RavenSystem",
+        "metrics": {
+            "length": 10,
+            "uppercase": 1,
+            "lowercase": 3,
+            "digits": 3,
+            "symbols": 3,
+            "strength": "Strong",
+            "tokens": [
+                "$",
+                "p",
+                "@",
+                "r",
+                "t",
+                "@",
+                "N",
+                "1",
+                "1",
+                "7"
+            ],
+            "leaked_matches": [
+                "p",
+                "117"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 8218.614411848439
+        },
+        "crack_time_seconds": 8218.614411848439
+    },
+    {
+        "name": "RavenSystem",
+        "metrics": {
+            "length": 10,
+            "uppercase": 1,
+            "lowercase": 3,
+            "digits": 3,
+            "symbols": 3,
+            "strength": "Strong",
+            "tokens": [
+                "$",
+                "p",
+                "@",
+                "r",
+                "t",
+                "@",
+                "N",
+                "1",
+                "1",
+                "7"
+            ],
+            "leaked_matches": [
+                "p",
+                "117"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 8218.614411848439
+        },
+        "crack_time_seconds": 8218.614411848439
+    },
+    {
+        "name": "RavenSystem",
+        "metrics": {
+            "length": 10,
+            "uppercase": 1,
+            "lowercase": 3,
+            "digits": 3,
+            "symbols": 3,
+            "strength": "Strong",
+            "tokens": [
+                "$",
+                "p",
+                "@",
+                "r",
+                "t",
+                "@",
+                "N",
+                "1",
+                "1",
+                "7"
+            ],
+            "leaked_matches": [
+                "p",
+                "117"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 8218.614411848439
+        },
+        "crack_time_seconds": 8218.614411848439
+    },
+    {
+        "name": "RavenSystem",
+        "metrics": {
+            "length": 10,
+            "uppercase": 1,
+            "lowercase": 3,
+            "digits": 3,
+            "symbols": 3,
+            "strength": "Strong",
+            "tokens": [
+                "$",
+                "p",
+                "@",
+                "r",
+                "t",
+                "@",
+                "N",
+                "1",
+                "1",
+                "7"
+            ],
+            "leaked_matches": [
+                "p",
+                "117"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 8218.614411848439
+        },
+        "crack_time_seconds": 8218.614411848439
+    },
+    {
+        "name": "mlamlam",
+        "metrics": {
+            "length": 14,
+            "uppercase": 0,
+            "lowercase": 8,
+            "digits": 0,
+            "symbols": 6,
+            "strength": "Strong",
+            "tokens": [
+                "&",
+                "*",
+                "&",
+                "^",
+                "k",
+                "f",
+                "p",
+                "o",
+                ")",
+                "(",
+                "s",
+                "d",
+                "p",
+                "k"
+            ],
+            "leaked_matches": [],
+            "english_matches": [],
+            "crack_time_seconds": 24375970420801.523
+        },
+        "crack_time_seconds": 24375970420801.523
+    },
+    {
+        "name": "mlamlam",
+        "metrics": {
+            "length": 14,
+            "uppercase": 0,
+            "lowercase": 8,
+            "digits": 0,
+            "symbols": 6,
+            "strength": "Strong",
+            "tokens": [
+                "&",
+                "*",
+                "&",
+                "^",
+                "k",
+                "f",
+                "p",
+                "o",
+                ")",
+                "(",
+                "s",
+                "d",
+                "p",
+                "k"
+            ],
+            "leaked_matches": [],
+            "english_matches": [],
+            "crack_time_seconds": 24375970420801.523
+        },
+        "crack_time_seconds": 24375970420801.523
+    },
+    {
+        "name": "lam",
+        "metrics": {
+            "length": 14,
+            "uppercase": 3,
+            "lowercase": 6,
+            "digits": 4,
+            "symbols": 1,
+            "strength": "Strong",
+            "tokens": [
+                "F",
+                "E",
+                "*",
+                "9",
+                "7",
+                "9",
+                "8",
+                "d",
+                "j",
+                "L",
+                "p",
+                "o",
+                "d",
+                "s"
+            ],
+            "leaked_matches": [
+                "9798"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 641667465469.1715
+        },
+        "crack_time_seconds": 641667465469.1715
+    },
+    {
+        "name": "lam",
+        "metrics": {
+            "length": 14,
+            "uppercase": 3,
+            "lowercase": 6,
+            "digits": 4,
+            "symbols": 1,
+            "strength": "Strong",
+            "tokens": [
+                "F",
+                "E",
+                "*",
+                "9",
+                "7",
+                "9",
+                "8",
+                "d",
+                "j",
+                "L",
+                "p",
+                "o",
+                "d",
+                "s"
+            ],
+            "leaked_matches": [
+                "9798"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 641667465469.1715
+        },
+        "crack_time_seconds": 641667465469.1715
+    },
+    {
+        "name": "edward c",
+        "metrics": {
+            "length": 12,
+            "uppercase": 1,
+            "lowercase": 3,
+            "digits": 3,
+            "symbols": 5,
+            "strength": "Strong",
+            "tokens": [
+                "3",
+                "D",
+                "w",
+                "#",
+                "r",
+                "d",
+                "1",
+                "3",
+                "!",
+                "@",
+                "#",
+                "$"
+            ],
+            "leaked_matches": [
+                "13",
+                "3"
+            ],
+            "english_matches": [],
+            "crack_time_seconds": 72619676.94309336
+        },
+        "crack_time_seconds": 72619676.94309336
+    },
+    {
+        "name": "Ben Furmanek",
+        "metrics": {
+            "length": 16,
+            "uppercase": 3,
+            "lowercase": 11,
+            "digits": 2,
+            "symbols": 0,
+            "strength": "Strong",
+            "tokens": [
+                "b",
+                "i",
+                "n",
+                "g",
+                "y",
+                "Y",
+                "b",
+                "i",
+                "n",
+                "g",
+                "y",
+                "Y",
+                "J",
+                "o",
+                "8",
+                "1"
+            ],
+            "leaked_matches": [],
+            "english_matches": [],
+            "crack_time_seconds": 2.3836200853411923e+17
+        },
+        "crack_time_seconds": 2.3836200853411923e+17
     }
 ]
