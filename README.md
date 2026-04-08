@@ -50,7 +50,7 @@ hack-a-password/
 │
 └── data/
     ├── rockyou.txt          # Breach password dataset (not included, see below)
-    ├── words.txt            # English dictionary dataset (not included, see below)
+    ├── words.csv            # English dictionary dataset (not included, see below)
     └── crack_times.json     # Auto-generated at runtime; wiped on each restart
 ```
 
@@ -75,7 +75,7 @@ This project requires two external datasets placed in the `data/` folder:
 
 - **rockyou.txt** — the RockYou breach dataset. Widely available for security research purposes. Contains 14,341,564 unique passwords, used in 32,603,388 accounts.
 Download at https://www.kaggle.com/datasets/wjburns/common-password-list-rockyoutxt
-- **words.txt** — any standard English word list. Download one from https://www.kaggle.com/datasets/lennartluik/all-english-words-csv
+- **words.csv** — any standard English word list. Download one from https://www.kaggle.com/datasets/lennartluik/all-english-words-csv
 
 Place both files in the `data/` directory before running.
 
